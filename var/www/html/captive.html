@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>PirateBox - Offline File Share</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="refresh" content="6;url=http://10.0.0.1/">
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var seconds = 5;
+            var targetUrl = "http://10.0.0.1/";
+            var timerEl = document.getElementById("timer");
+            timerEl.textContent = seconds;
+            var interval = setInterval(function () {
+                seconds--;
+                timerEl.textContent = seconds;
+                if (seconds <= 0) {
+                    clearInterval(interval);
+                    window.location.href = targetUrl;
+                }
+            }, 1000);
+        });
+    </script>
+</head>
+
+<body class="centered-page">
+    <img src="500px-PirateBox-logo.svg.png" alt="PirateBox" class="logo">
+    <h1>Welcome to PirateBox</h1>
+    <p>You are being connected to the local hotspot.</p>
+    <p>Redirecting to <a href="http://10.0.0.1/">http://10.0.0.1</a> in <span id="timer">5</span> seconds…</p>
+
+    <h2 style="text-align:center;"><a href="http://10.0.0.1/">http://10.0.0.1</a></h2>
+
+    <footer><p style="text-align:center;"></p></footer>
+</body>
+
+</html>
