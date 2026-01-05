@@ -6,10 +6,10 @@ Inspired by the discontinued [PirateBox](https://en.wikipedia.org/wiki/PirateBox
 
 This configuration has been tested on a Raspberry Pi Zero 2 W running Raspberry Pi OS Lite (Trixie).
 
-<div style="text-align:center;margin:4px;display:block; max-width:300px;">
-<img src="https://github.com/teklynk/piratebox/blob/main/ui_piratebox.jpg?raw=true" />
+<div dir="auto">
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/teklynk/piratebox/blob/main/ui_piratebox.jpg?raw=true"><img src="https://github.com/teklynk/piratebox/raw/main/ui_piratebox.jpg?raw=true" style="max-width: 100%;"></a>
 <br>
-<img src="https://github.com/teklynk/piratebox/blob/main/pizero_piratebox.jpg?raw=true" />
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/teklynk/piratebox/blob/main/pizero_piratebox.jpg?raw=true"><img src="https://github.com/teklynk/piratebox/raw/main/pizero_piratebox.jpg?raw=true" style="max-width: 100%;"></a>
 </div>
 
 ## Features
