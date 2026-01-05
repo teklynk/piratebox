@@ -1,8 +1,10 @@
 # PirateBox - Offline File Share
 
-This project turns a Raspberry Pi (or similar Debian-based system) into an offline, anonymous file-sharing network. Users connect to the "PirateBox" Wi-Fi hotspot and are redirected to a browser-based file upload/download interface.
+This project transforms a Raspberry Pi (or similar Debian-based system) into an offline, anonymous file-sharing network. Users connect to the "PirateBox" Wi-Fi hotspot and are automatically redirected to a browser-based interface for uploading and downloading files.
 
-This project has been tested on a Raspberry Pi Zero 2 W, running Raspberry Pi OS Lite (Trixie).
+Inspired by the discontinued [PirateBox](https://en.wikipedia.org/wiki/PirateBox) project, this lightweight implementation uses Nginx, PHP, dnsmasq, and hostapd without requiring a database. It functions as a "captive portal" similar to public Wi-Fi login pages found in hotels or libraries, but instead of requesting credentials, it immediately serves the file-sharing page.
+
+This configuration has been tested on a Raspberry Pi Zero 2 W running Raspberry Pi OS Lite (Trixie).
 
 <div style="text-align:center;margin:4px;display:block; max-width:400px;">
 <img src="https://github.com/teklynk/piratebox/blob/main/ui_piratebox.jpg?raw=true" />
