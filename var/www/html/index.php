@@ -46,18 +46,32 @@ usort($files, fn($a, $b) => $b['uploaded'] <=> $a['uploaded']);
     <title>PirateBox - Offline File Share</title>
     <link rel="stylesheet" href="styles.css">
     <script>
+        const MAX_FILE_SIZE = <?= $MAX_SIZE ?>;
+
         document.addEventListener('DOMContentLoaded', function() {
             const uploadForm = document.querySelector('form');
             if (uploadForm) {
-                uploadForm.addEventListener('submit', function() {
+                uploadForm.addEventListener('submit', function(e) {
                     const btn = uploadForm.querySelector('button');
+                    const fileLabel = uploadForm.querySelector('label');
                     const fileInput = uploadForm.querySelector('input[name="file"]');
+
+                    if (fileInput && fileInput.files.length > 0) {
+                        if (fileInput.files[0].size > MAX_FILE_SIZE) {
+                            e.preventDefault();
+                            alert('File is too large. Maximum size is ' + (MAX_FILE_SIZE / 1024 / 1024) + 'MiB.');
+                            return;
+                        }
+                    }
+
                     btn.disabled = true;
                     btn.textContent = 'UPLOADING...';
+                    btn.classList.add('upload-animation');
                     if (fileInput) {
                         fileInput.style.pointerEvents = 'none';
                         fileInput.style.opacity = '0.5';
                         fileInput.style.display = 'none';
+                        fileLabel.style.display = 'none';
                     }
                 });
             }
@@ -129,7 +143,7 @@ usort($files, fn($a, $b) => $b['uploaded'] <=> $a['uploaded']);
         </div>
     <?php endif; ?>
 
-    <footer><p style="text-align:center;"></p></footer>
+    <footer><p style="text-align:center;margin-top: 30px;"><small class="muted">Made with 🖤 by Teklynk</small></p></footer>
 </body>
 
 </html>
