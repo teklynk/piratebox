@@ -57,6 +57,7 @@ usort($files, fn($a, $b) => $b['uploaded'] <=> $a['uploaded']);
                     if (fileInput) {
                         fileInput.style.pointerEvents = 'none';
                         fileInput.style.opacity = '0.5';
+                        fileInput.style.display = 'none';
                     }
                 });
             }

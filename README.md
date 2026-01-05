@@ -124,3 +124,15 @@ A script `purge_uploads.sh` is provided to clean up uploads.
 1. Make it executable: `chmod +x purge_uploads.sh`.
 2. Add a cron job (`sudo crontab -e`) to run it daily at midnight:
    `0 0 * * * /bin/bash /path/to/purge_uploads.sh`
+
+### Disable Unnecessary Services
+
+```bash
+sudo systemctl disable bluetooth.service
+
+sudo systemctl stop wpa_supplicant.service
+
+sudo systemctl disable wpa_supplicant.service
+
+sudo systemctl mask wpa_supplicant.service
+```
