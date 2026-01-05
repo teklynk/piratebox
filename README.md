@@ -6,7 +6,7 @@ Inspired by the discontinued [PirateBox](https://en.wikipedia.org/wiki/PirateBox
 
 This configuration has been tested on a Raspberry Pi Zero 2 W running Raspberry Pi OS Lite (Trixie).
 
-<div style="text-align:center;margin:4px;display:block; max-width:400px;">
+<div style="text-align:center;margin:4px;display:block; max-width:300px;">
 <img src="https://github.com/teklynk/piratebox/blob/main/ui_piratebox.jpg?raw=true" />
 <br>
 <img src="https://github.com/teklynk/piratebox/blob/main/pizero_piratebox.jpg?raw=true" />
@@ -137,4 +137,14 @@ sudo systemctl stop wpa_supplicant.service
 sudo systemctl disable wpa_supplicant.service
 
 sudo systemctl mask wpa_supplicant.service
+```
+
+You may also want to disable SSH. This will however mean that you will no longer be able to SSH into the device. 
+
+```bash
+sudo systemctl disable --now ssh
+
+sudo systemctl mask ssh
+
+sudo systemctl status ssh
 ```
