@@ -183,8 +183,9 @@ button.upload-animation:disabled {
 
 .message-container {
     width: 100%;
-    min-width: 500px;
     margin: 0 auto;
+    overflow-x: auto;
+    border-radius: 0;
 }
 
 .message-card {
