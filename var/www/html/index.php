@@ -97,6 +97,7 @@ usort($files, fn($a, $b) => $b['uploaded'] <=> $a['uploaded']);
 </head>
 
 <body>
+    <a href="messages.php" class="top-right-link">Messages</a>
     <img src="500px-PirateBox-logo.svg.png" alt="PirateBox Logo" class="logo">
     <h1>PirateBox - Offline File Share</h1>
 
@@ -143,7 +144,7 @@ usort($files, fn($a, $b) => $b['uploaded'] <=> $a['uploaded']);
         </div>
     <?php endif; ?>
 
-    <footer><p style="text-align:center;margin-top: 30px;"><small class="muted">Made with 🖤 by Teklynk</small></p></footer>
+    <footer><p style="text-align:center;margin-top: 30px;"><small class="muted">Made with 🖤 by <a href="https://github.com/teklynk/piratebox" target="_blank">Teklynk</a></small></p></footer>
 </body>
 
 </html>

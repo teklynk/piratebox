@@ -34,7 +34,9 @@ form {
     box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075)
 }
 
-input[type="file"] {
+input[type="file"],
+input[type="text"],
+textarea {
     font-family: inherit;
     font-size: 1rem;
     width: 96%;
@@ -43,6 +45,12 @@ input[type="file"] {
     background: #000;
     color: #8c8dff;
     border-radius: 0;
+}
+
+input[type="text"],
+textarea {
+    color: #ddd9e8;
+    resize: vertical;
 }
 
 button {
@@ -154,4 +162,57 @@ button.upload-animation:disabled {
     color: #fff;
     border-color: #8c8dff;
     cursor: progress;
+}
+
+.top-right-link {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    background: #292938;
+    padding: 0.5rem 1rem;
+    border: 1px solid #8c8dff;
+}
+
+.top-right-link:hover {
+    background: #8c8dff;
+    color: #fff;
+    text-decoration: none;
+}
+
+.message-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.message-card {
+    background: #292938;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 4px solid #8c8dff;
+    box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075);
+}
+
+.message-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid #343a40;
+    padding-bottom: 0.5rem;
+}
+
+.message-author {
+    font-weight: bold;
+    color: #8c8dff;
+}
+
+.message-time {
+    font-size: 0.85rem;
+    color: #606085;
+}
+
+.message-body {
+    word-wrap: break-word;
+    white-space: pre-wrap;
 }
