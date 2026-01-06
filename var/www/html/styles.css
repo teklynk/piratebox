@@ -182,7 +182,8 @@ button.upload-animation:disabled {
 }
 
 .message-container {
-    max-width: 600px;
+    width: 100%;
+    min-width: 500px;
     margin: 0 auto;
 }
 

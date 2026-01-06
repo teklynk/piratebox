@@ -65,6 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <img src="500px-PirateBox-logo.svg.png" alt="PirateBox Logo" class="logo">
     <h1>PirateBox Messages</h1>
+    <h2 style="text-align:center;"><a href="http://10.0.0.1/">http://10.0.0.1</a></h2>
 
     <form action="messages.php" method="post">
         <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token']) ?>">
