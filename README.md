@@ -150,3 +150,22 @@ sudo systemctl mask ssh
 
 sudo systemctl status ssh
 ```
+
+### Known Issues
+
+Sometimes the Raspberry Pi will go into a idle state and refuse new connections. 
+
+Some online suggestions involve disabling power management on the wlan0.
+```bash
+sudo apt install iw
+```
+```bash
+sudo iw dev wlan0 set power_save off
+```
+I have also included: `restart_hostapd.sh`. This can be set as a cron job to periodically restart the hostapd service.
+```bash
+crontab -e
+```
+```bash
+0 * * * * /usr/local/bin/restart_hostapd.sh
+```
