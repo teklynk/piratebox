@@ -8,7 +8,7 @@ ini_set('post_max_size', '130M');   // total size of the POST body
 ini_set('memory_limit', '256M');   // optional - helps with large multipart parsing
 
 $UPLOAD_DIR = __DIR__ . '/uploads';
-$MAX_SIZE = 130 * 1024 * 1024;   // 130MiB – change as needed
+$MAX_SIZE = 130 * 1024 * 1024;   // 130MiB change as needed
 
 // Make sure the uploads directory exists (same as index.php)
 if (!is_dir($UPLOAD_DIR)) {

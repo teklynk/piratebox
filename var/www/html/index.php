@@ -101,7 +101,7 @@ usort($files, fn($a, $b) => $b['uploaded'] <=> $a['uploaded']);
     <img src="500px-PirateBox-logo.svg.png" alt="PirateBox Logo" class="logo">
     <h1>PirateBox - Offline File Share</h1>
 
-    <h2 style="text-align:center;"><a href="http://10.0.0.1/">http://10.0.0.1</a></h2>
+    <h2 style="text-align:center;"><a href="http://10.0.0.1/">10.0.0.1</a></h2>
 
     <?php if (!empty($msg)): ?>
         <p><strong><?= htmlspecialchars($msg) ?></strong></p>
@@ -117,7 +117,7 @@ usort($files, fn($a, $b) => $b['uploaded'] <=> $a['uploaded']);
 
     <h2>Available files</h2>
     <?php if (empty($files)): ?>
-        <p>No files uploaded yet.</p>
+        <p style="text-align:center; color: #606085;">No files uploaded yet.</p>
     <?php else: ?>
         <div class="search-container">
             <input type="text" id="fileSearch" placeholder="Search files..." aria-label="Search files">
