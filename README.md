@@ -24,15 +24,41 @@ This configuration has been tested on a Raspberry Pi Zero 2 W running Raspberry 
 - Raspberry Pi with Wi-Fi capability.
 - OS: Raspbian / Debian.
 - Root/Sudo access.
+- Ran: `sudo raspi-config` and set all of the localization settings, set hostname and enabled SSH.
 
 ## Installation
 
 ### 1. Install Dependencies
+Tip: On the Raspberry Pi Zero 2 W, I used a usb hub that also has ethernet. This allowed me to SSH into the Pi while configuring hostapd.
+
+Note: The time server is not set by default. This can break `apt update` and produce errors on screen. The issue is that the date/time of the repos do not match the date/time of the Raspberry Pi. They are out of sync. These steps should sync your date/time and you can then run apt update. Ignore all online suggestions about downloading certs. It's just a time sync issue. 
+
+```bash
+sudo nano /etc/systemd/timesyncd.conf
+```
+
+Set the NTP server:
+`NTP=time.cloudflare.com`
+
+```bash
+sudo systemctl restart systemd-timesyncd
+```
+
+```bash
+timedatectl
+```
+
 Update your system and install the required packages:
 ```bash
 sudo apt update
+```
+```bash
 sudo apt install -y hostapd dnsmasq dhcpcd5 nginx php-fpm
 ```
+
+**❗IMPORTANT❗**
+
+Run `sudo rpi-upate` to install the latest firmware/kernel. This fixed so many issues that I was having with disconnects. iOS devices would connect and then the kernel would crash once the iOS device disconnected. I went down a rabbit hole trying to find a solution. Turns out, I just needed to update the kernel. Don't let this happen to you.
 
 ### 2. Network Configuration
 
@@ -125,9 +151,15 @@ sudo chmod 0755 uploads
 
 ### 5. Maintenance (Auto-Purge - optional)
 A script `purge_uploads.sh` is provided to clean up uploads.
-1. Make it executable: `chmod +x purge_uploads.sh`.
-2. Add a cron job (`sudo crontab -e`) to run it daily at midnight:
-   `0 0 * * * /bin/bash /path/to/purge_uploads.sh`
+```bash
+sudo touch /var/log/purge_uploads.log
+```
+```bash
+sudo crontab -e
+```
+```bash
+0 0 * * * /usr/local/bin/purge_uploads.sh > /var/log/purge_uploads.log 2>&1
+```
 
 ### Disable Unnecessary Services
 
@@ -151,21 +183,8 @@ sudo systemctl mask ssh
 sudo systemctl status ssh
 ```
 
-### Known Issues
+### Known Issues and troubleshooting
 
-Sometimes the Raspberry Pi will go into a idle state and refuse new connections. 
+Run `sudo rpi-upate` to install the latest firmware/kernel. 
 
-Some online suggestions involve disabling power management on the wlan0.
-```bash
-sudo apt install iw
-```
-```bash
-sudo iw dev wlan0 set power_save off
-```
-I have also included: `restart_hostapd.sh`. This can be set as a cron job to periodically restart the hostapd service.
-```bash
-crontab -e
-```
-```bash
-0 * * * * /usr/local/bin/restart_hostapd.sh
-```
+Set `restart_hostapd.sh` as a cron job to run every hour.

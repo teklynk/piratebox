@@ -18,3 +18,5 @@ if [ -d "$TARGET_DIR" ]; then
     # Set permissions to 0755 (rwxr-xr-x)
     chmod 0755 "$TARGET_DIR"/uploads
 fi
+
+echo $(date) ": Ran purge_uploads.sh"
