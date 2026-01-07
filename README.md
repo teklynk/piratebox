@@ -18,7 +18,8 @@ This configuration has been tested on a Raspberry Pi Zero 2 W running Raspberry 
 - **Offline Network**: Creates its own Wi-Fi hotspot (SSID: PirateBox).
 - **Captive Portal**: DNS redirection resolves all requests to the local server.
 - **File Sharing**: Simple web interface to upload and download files.
-- **Auto-Cleanup**: Script included to purge uploads daily (optional via cron job).
+- **Messages**: Guestbook style messages. Let people know that you were here.
+- **Auto-Cleanup**: Script included to purge uploads and messages (optional via scheduled cron job).
 
 ## Prerequisites
 - Raspberry Pi with Wi-Fi capability.
@@ -150,13 +151,14 @@ sudo chmod 0755 uploads
 ```
 
 ### 5. Maintenance (Auto-Purge - optional)
-A script `purge_uploads.sh` is provided to clean up uploads.
+A script `purge_uploads.sh` is provided to clean up uploads and messages.
 ```bash
 sudo touch /var/log/purge_uploads.log
 ```
 ```bash
 sudo crontab -e
 ```
+Every day at midnight
 ```bash
 0 0 * * * /usr/local/bin/purge_uploads.sh > /var/log/purge_uploads.log 2>&1
 ```
