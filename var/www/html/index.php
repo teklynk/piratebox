@@ -115,10 +115,10 @@ usort($files, fn($a, $b) => $b['uploaded'] <=> $a['uploaded']);
         <button type="submit">Upload</button>
     </form>
 
-    <h2>Available files</h2>
     <?php if (empty($files)): ?>
         <p style="text-align:center; color: #606085;">No files uploaded yet.</p>
     <?php else: ?>
+        <h2>Available files</h2>
         <div class="search-container">
             <input type="text" id="fileSearch" placeholder="Search files..." aria-label="Search files">
         </div>
