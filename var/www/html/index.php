@@ -134,7 +134,7 @@ usort($files, fn($a, $b) => $b['uploaded'] <=> $a['uploaded']);
                 <tbody>
                     <?php foreach ($files as $f): ?>
                         <tr>
-                            <td><a href="uploads/<?= rawurlencode($f['name']) ?>" download><?= htmlspecialchars($f['name']) ?></a></td>
+                            <td><a href="uploads/<?= rawurlencode($f['name']) ?>"><?= htmlspecialchars($f['name']) ?></a></td>
                             <td><?= round($f['size'] / 1024, 1) ?>KB</td>
                             <td><?= date('Y-m-d H:i', $f['uploaded']) ?></td>
                         </tr>
