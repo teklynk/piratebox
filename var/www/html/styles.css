@@ -119,7 +119,7 @@ a:hover {
 .logo {
     display: block;
     margin: 0 auto 1rem auto;
-    width: 150px;
+    width: 100px;
     filter: drop-shadow(0 0 5px #a0a1ff);
 }
 

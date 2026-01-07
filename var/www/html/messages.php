@@ -77,8 +77,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <a href="/" class="top-right-link">Back to Files</a>
 
     <img src="500px-PirateBox-logo.svg.png" alt="PirateBox Logo" class="logo">
-    <h1>PirateBox - Offline Messages</h1>
-    <h2 style="text-align:center;"><a href="http://10.0.0.1/">10.0.0.1</a></h2>
 
     <form action="messages.php" method="post">
         <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token']) ?>">
@@ -111,6 +109,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 
     <footer>
+        <h2 style="text-align:center;"><a href="http://10.0.0.1/">10.0.0.1</a></h2>
         <p style="text-align:center;margin-top: 30px;"><small class="muted">Made with 🖤 by <a href="https://github.com/teklynk/piratebox" target="_blank">Teklynk</a></small></p>
     </footer>
 </body>
