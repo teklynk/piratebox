@@ -7,9 +7,11 @@ Inspired by the discontinued [PirateBox](https://en.wikipedia.org/wiki/PirateBox
 This configuration has been tested on a Raspberry Pi Zero 2 W running Raspberry Pi OS Lite (Trixie).
 
 <div dir="auto">
-<a target="_blank" rel="noopener noreferrer" href="https://github.com/teklynk/piratebox/blob/main/Screenshot%20from%202026-01-06%2011-58-31.png?raw=true"><img src="https://github.com/teklynk/piratebox/blob/main/Screenshot%20from%202026-01-06%2011-58-31.png?raw=true" style="max-width: 100%;"></a>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/teklynk/piratebox/blob/main/Screenshot%20from%202026-01-08 17-08-04.png?raw=true"><img src="https://github.com/teklynk/piratebox/blob/main/Screenshot%20from%202026-01-08 17-08-04.png?raw=true" style="max-width: 100%;"></a>
 <br>
-<a target="_blank" rel="noopener noreferrer" href="https://github.com/teklynk/piratebox/blob/main/Screenshot%20from%202026-01-06%2012-04-17.png?raw=true"><img src="https://github.com/teklynk/piratebox/blob/main/Screenshot%20from%202026-01-06%2012-04-17.png?raw=true" style="max-width: 100%;"></a>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/teklynk/piratebox/blob/main/Screenshot%20from%202026-01-08 17-08-26.png?raw=true"><img src="https://github.com/teklynk/piratebox/blob/main/Screenshot%20from%202026-01-08 17-08-26.png?raw=true" style="max-width: 100%;"></a>
+<br>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/teklynk/piratebox/blob/main/Screenshot%20from%202026-01-08 17-09-05.png?raw=true"><img src="https://github.com/teklynk/piratebox/blob/main/Screenshot%20from%202026-01-08 17-09-05.png?raw=true" style="max-width: 100%;"></a>
 <br>
 <a target="_blank" rel="noopener noreferrer" href="https://github.com/teklynk/piratebox/blob/main/pizero_piratebox.jpg?raw=true"><img src="https://github.com/teklynk/piratebox/raw/main/pizero_piratebox.jpg?raw=true" style="max-width: 100%;"></a>
 </div>
@@ -187,6 +189,6 @@ sudo systemctl status ssh
 
 ### Known Issues and troubleshooting
 
-Run `sudo rpi-upate` to install the latest firmware/kernel. 
+Run `sudo rpi-update` to install the latest firmware/kernel. 
 
 Set `restart_hostapd.sh` as a cron job to run every hour.
