@@ -57,26 +57,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>PirateBox - Messages</title>
-    <link rel="stylesheet" href="styles.css">
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const messageInput = document.querySelector('textarea[name="message"]');
-            const charCountDisplay = document.getElementById('char-count');
-            const maxLength = messageInput.getAttribute('maxlength');
-
-            if (messageInput && charCountDisplay) {
-                messageInput.addEventListener('input', function() {
-                    charCountDisplay.textContent = `${messageInput.value.length} / ${maxLength}`;
-                });
-            }
-        });
-    </script>
+    <link rel="stylesheet" href="assets/styles.css">
+    <script src="assets/scripts.js"></script>
 </head>
 
 <body>
-    <a href="/" class="top-right-link">Back to Files</a>
-
-    <img src="500px-PirateBox-logo.svg.png" alt="PirateBox Logo" class="logo">
+    <?php require_once __DIR__ . '/includes/navbar.php'; ?>
 
     <form action="messages.php" method="post">
         <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token']) ?>">
@@ -108,10 +94,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php endif; ?>
     </div>
 
-    <footer>
-        <h2 style="text-align:center;"><a href="http://10.0.0.1/">10.0.0.1</a></h2>
-        <p style="text-align:center;margin-top: 30px;"><small class="muted">Made with 🖤 by <a href="https://github.com/teklynk/piratebox" target="_blank">Teklynk</a></small></p>
-    </footer>
+    <?php require_once __DIR__ . '/includes/footer.php'; ?>
+    
 </body>
 
 </html>

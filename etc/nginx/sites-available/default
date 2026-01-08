@@ -18,9 +18,9 @@ server {
     }
 
     # Android (Google 204 check)
-    location = /generate_204 {
-        return 204;
-    }
+    # location = /generate_204 {
+    #    return 204;
+    # }
 
     # Windows NCSI
     location = /ncsi.txt {
