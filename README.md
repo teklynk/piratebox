@@ -61,7 +61,7 @@ sudo apt install -y hostapd dnsmasq dhcpcd5 nginx php-fpm
 
 **❗IMPORTANT❗**
 
-Run `sudo rpi-upate` to install the latest firmware/kernel. This fixed so many issues that I was having with disconnects. iOS devices would connect and then the kernel would crash once the iOS device disconnected. I went down a rabbit hole trying to find a solution. Turns out, I just needed to update the kernel. Don't let this happen to you.
+Run `sudo rpi-update` to install the latest firmware/kernel. This fixed so many issues that I was having with disconnects. iOS devices would connect and then the kernel would crash once the iOS device disconnected. I went down a rabbit hole trying to find a solution. Turns out, I just needed to update the kernel. Don't let this happen to you.
 
 ### 2. Network Configuration
 
