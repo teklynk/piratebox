@@ -10,6 +10,7 @@ ini_set('memory_limit', '256M');   // optional: helps with large multipart parsi
 
 $UPLOAD_DIR = __DIR__ . '/uploads';
 $MAX_SIZE = 120 * 1024 * 1024; // 120MiB per file (adjust as you wish)
+$OPEN_FILE_TYPES = ['mp4','mp3','png','jpg','jpeg','gif'];
 
 // Ensure the upload folder exists
 if (!is_dir($UPLOAD_DIR)) {
@@ -81,8 +82,14 @@ usort($files, fn($a, $b) => $b['uploaded'] <=> $a['uploaded']);
                 </thead>
                 <tbody>
                     <?php foreach ($files as $f): ?>
+                        <?php 
+                        $download = "";
+                        if (!in_array(pathinfo(rawurlencode($f['name']), PATHINFO_EXTENSION), $OPEN_FILE_TYPES)) {
+                            $download = "download";
+                        }    
+                        ?>
                         <tr>
-                            <td><a href="uploads/<?= rawurlencode($f['name']) ?>"><?= htmlspecialchars($f['name']) ?></a></td>
+                            <td><a href="uploads/<?= rawurlencode($f['name']) ?>" <?= $download ?>><?= htmlspecialchars($f['name']) ?></a></td>
                             <td><?= round($f['size'] / 1024, 1) ?>KB</td>
                             <td><?= date('Y-m-d H:i', $f['uploaded']) ?></td>
                         </tr>
