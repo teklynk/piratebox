@@ -27,14 +27,14 @@ This configuration has been tested on a Raspberry Pi Zero 2 W running Raspberry 
 - Raspberry Pi with Wi-Fi capability.
 - OS: Raspbian / Debian.
 - Root/Sudo access.
-- Ran: `sudo raspi-config` and set all of the localization settings, set hostname and enabled SSH.
+- Run: `sudo raspi-config` and set all of the localization settings, WIFI region, TimeZone, Keyboard layout, set hostname and enabled SSH.
 
 ## Installation
 
 ### 1. Install Dependencies
-Tip: On the Raspberry Pi Zero 2 W, I used a usb hub that also has ethernet. This allowed me to SSH into the Pi while configuring hostapd.
+__Tip:__ On the Raspberry Pi Zero 2 W, I used a usb hub that also has ethernet. This allowed me to SSH into the Pi while configuring hostapd.
 
-Note: The time server is not set by default. This can break `apt update` and produce errors on screen. The issue is that the date/time of the repos do not match the date/time of the Raspberry Pi. They are out of sync. These steps should sync your date/time and you can then run apt update. Ignore all online suggestions about downloading certs. It's just a time sync issue. 
+__Note:__ The time server is not set by default. This can break `apt update` and produce errors on screen. The issue is that the date/time of the repos do not match the date/time of the Raspberry Pi. They are out of sync. These steps should sync your date/time and you can then run apt update. Ignore all online suggestions about downloading certs. It's just a time sync issue. 
 
 ```bash
 sudo nano /etc/systemd/timesyncd.conf
@@ -56,7 +56,7 @@ Update your system and install the required packages:
 sudo apt update
 ```
 ```bash
-sudo apt install -y hostapd dnsmasq dhcpcd5 nginx php-fpm
+sudo apt install -y hostapd dnsmasq dhcpcd5 nginx php-fpm git
 ```
 
 **❗IMPORTANT❗**

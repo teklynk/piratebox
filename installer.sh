@@ -11,6 +11,15 @@ if [ "$(id -u)" -ne 0 ]; then
     exit 1
 fi
 
+while true; do
+    read -p "Did you run: sudo raspi-config and set all of the Localisation Options? Be sure to do this before running this installer. (y/n) " yn
+    case $yn in
+        [Yy]* ) break;;
+        [Nn]* ) echo "Please run sudo raspi-config first."; exit;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
+
 echo "========================================"
 echo "   PirateBox Installer Started"
 echo "========================================"
