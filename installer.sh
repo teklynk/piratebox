@@ -65,6 +65,8 @@ EOF
 # Point hostapd to config
 sed -i 's|#DAEMON_CONF=""|DAEMON_CONF="/etc/hostapd/hostapd.conf"|' /etc/default/hostapd
 sed -i 's|DAEMON_CONF=""|DAEMON_CONF="/etc/hostapd/hostapd.conf"|' /etc/default/hostapd
+sed -i 's|#DAEMON_OPTS=""|DAEMON_OPTS=""|' /etc/default/hostapd
+sed -i 's|DAEMON_OPTS=""|DAEMON_OPTS=""|' /etc/default/hostapd
 
 systemctl unmask hostapd
 systemctl enable hostapd
