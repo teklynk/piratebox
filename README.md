@@ -27,12 +27,13 @@ This configuration has been tested on a Raspberry Pi Zero 2 W running Raspberry 
 - Raspberry Pi with Wi-Fi capability.
 - OS: Raspbian / Debian.
 - Root/Sudo access.
-- Run: `sudo raspi-config` and set all of the localization settings, WIFI region, TimeZone, Keyboard layout, set hostname and enabled SSH.
+
 
 ## Installation
 
 ### 1. Install Dependencies
 __Tip:__ On the Raspberry Pi Zero 2 W, I used a usb hub that also has ethernet. This allowed me to SSH into the Pi while configuring hostapd.
+- Run: `sudo raspi-config` and set all of the localization settings, WIFI region, TimeZone, Keyboard layout, set hostname and enabled SSH.
 
 __Note:__ The time server is not set by default. This can break `apt update` and produce errors on screen. The issue is that the date/time of the repos do not match the date/time of the Raspberry Pi. They are out of sync. These steps should sync your date/time and you can then run apt update. Ignore all online suggestions about downloading certs. It's just a time sync issue. 
 
@@ -92,9 +93,11 @@ auth_algs=1
 wpa=0
 country_code=US
 ```
+Edit: `/etc/default/hostapd`
 Point the daemon to this config in `/etc/default/hostapd`:
 ```bash
 DAEMON_CONF="/etc/hostapd/hostapd.conf"
+DAEMON_OPTS=""
 ```
 Unmask and start hostapd:
 ```bash
