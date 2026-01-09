@@ -22,6 +22,7 @@ done
 
 echo "========================================"
 echo "   PirateBox Installer Started"
+echo "   Experimental - Tested on Raspberry Pi Zero 2 W"
 echo "========================================"
 
 # Time Sync Fix (Crucial for apt update)
@@ -113,7 +114,7 @@ if [ -f "$PHP_INI" ]; then
     sed -i 's/^max_execution_time.*/max_execution_time = 300/' "$PHP_INI"
     sed -i 's/^display_errors.*/display_errors = Off/' "$PHP_INI"
     sed -i 's/^log_errors.*/log_errors = On/' "$PHP_INI"
-    # Add disable_functions if needed, though sed on a long list is tricky.
+    sed -i 's/^disable_functions.*/disable_functions = exec,passthru,shell_exec,system,proc_open,popen,curl_exec,curl_multi_exec,parse_ini_file,show_source/' "$PHP_INI"
 fi
 
 # Application Deployment
@@ -131,8 +132,9 @@ cp restart_hostapd.sh /usr/local/bin/
 chmod +x /usr/local/bin/restart_hostapd.sh
 
 echo "[+] Setting up Cron Jobs..."
-(crontab -l 2>/dev/null; echo "0 0 * * * /usr/local/bin/purge_uploads.sh > /var/log/purge_uploads.log 2>&1") | sort -u | crontab -
-(crontab -l 2>/dev/null; echo "0 * * * * /usr/local/bin/restart_hostapd.sh > /dev/null 2>&1") | sort -u | crontab -
+(crontab -l; echo "0 0 * * * /usr/local/bin/purge_uploads.sh > /var/log/purge_uploads.log 2>&1") | awk '!x[$0]++' | crontab -
+(crontab -l; echo "0 * * * * /usr/local/bin/restart_hostapd.sh > /dev/null 2>&1") | awk '!x[$0]++' | crontab -
+(crontab -l; echo "@daily sleep 10; reboot > /dev/null 2>&1") | awk '!x[$0]++' | crontab -
 
 # Disable Services
 echo "[+] Disabling unnecessary services..."
