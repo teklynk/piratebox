@@ -149,10 +149,10 @@ Copy the source files (`index.php`, `upload.php`, `styles.css`, images) to `/var
 
 Create the uploads directory and set permissions:
 ```bash
-cd /var/www/html
+cd /var/www/html/public
 sudo mkdir uploads
 sudo chown -R www-data:www-data /var/www/html
-sudo chmod 0755 uploads
+sudo chmod 0755 /var/www/html/public/uploads
 ```
 
 ### 5. Maintenance (Auto-Purge - optional)

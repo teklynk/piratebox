@@ -14,6 +14,9 @@ $MAX_SIZE = 130 * 1024 * 1024;   // 130MiB change as needed
 if (!is_dir($UPLOAD_DIR)) {
     mkdir($UPLOAD_DIR, 0755, true);
 }
+if (is_dir($UPLOAD_DIR) && !is_writable($UPLOAD_DIR)) {
+    chmod($UPLOAD_DIR, 0755);
+}
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_FILES['file'])) {
     header('Location: /');
@@ -60,7 +63,7 @@ if ($err !== UPLOAD_ERR_OK) {
         header('Location: /');
         exit;
     } else {
-        $msg = "Failed to move uploaded file.";
+        $msg = "Failed to move uploaded file to $dest. Check permissions.";
     }
 }
 
@@ -78,7 +81,7 @@ if ($err !== UPLOAD_ERR_OK) {
 <body class="centered-page">
     <h1>Upload error</h1>
     <p><?= htmlspecialchars($msg) ?></p>
-    <p><a href="/">Back to portal</a></p>
+    <p><a href="/">Back to files</a></p>
 </body>
 
 </html>

@@ -6,7 +6,7 @@ if (empty($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 }
 
-$DATA_FILE = __DIR__ . '/messages.json';
+$DATA_FILE = __DIR__ . '/../data/messages.json';
 $messages = [];
 
 if (file_exists($DATA_FILE)) {
@@ -32,7 +32,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if ($content !== '') {
+        $next_id = (!empty($messages) && isset($messages[0]['id'])) ? $messages[0]['id'] + 1 : 0;
+
         $newMessage = [
+            'id' => $next_id,
             'name' => $name,
             'message' => $content,
             'timestamp' => time()
@@ -62,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
-    <?php require_once __DIR__ . '/includes/navbar.php'; ?>
+    <?php require_once __DIR__ . '/../includes/navbar.php'; ?>
 
     <form action="messages.php" method="post">
         <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token']) ?>">
@@ -86,15 +89,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="message-card">
                     <div class="message-header">
                         <span class="message-author"><?= htmlspecialchars($msg['name']) ?></span>
-                        <span class="message-time"><?= date('Y-m-d H:i', $msg['timestamp']) ?></span>
+                        <span class="message-time" data-timestamp="<?= $msg['timestamp'] ?>"></span>
                     </div>
                     <div class="message-body"><?= nl2br(htmlspecialchars($msg['message'])) ?></div>
                 </div>
             <?php endforeach; ?>
         <?php endif; ?>
     </div>
-
-    <?php require_once __DIR__ . '/includes/footer.php'; ?>
     
 </body>
 

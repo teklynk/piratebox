@@ -119,10 +119,12 @@ fi
 
 # Application Deployment
 echo "[+] Deploying Application files..."
-mkdir -p /var/www/html/uploads
+mkdir -p /var/www/html/public/uploads
+mkdir -p /var/www/html/data
 cp -r var/www/html/* /var/www/html/
 chown -R www-data:www-data /var/www/html
-chmod 0755 /var/www/html/uploads
+chmod 0755 /var/www/html/public/uploads
+chmod 0755 /var/www/html/data
 
 # Maintenance Scripts & Cron
 echo "[+] Installing Maintenance Scripts..."

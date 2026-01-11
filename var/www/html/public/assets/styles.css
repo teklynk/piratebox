@@ -288,3 +288,112 @@ button.upload-animation:disabled {
     .navbar-menu.active { display: flex; }
     .navbar-menu li { margin: 10px 0; }
 }
+
+/* Chat Page Styles */
+body.chat-page {
+    height: 100vh;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    overflow: hidden;
+}
+
+.chat-page h1 {
+    flex: 0 0 auto;
+    text-align: left;
+    text-transform: none;
+    margin: 0 auto;
+    width: 100%;
+}
+
+#chat-form {
+    background: transparent;
+    padding: 0;
+    box-shadow: none;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    flex: 0 0 auto;
+}
+
+#chat-form .input-group {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 0.5em;
+}
+
+#chat-form input[type="text"] {
+    width: auto;
+    min-width: 0;
+}
+
+#chat-form input[name="name"] {
+    flex: 0 1 10em;
+}
+
+#chat-form input[name="content"] {
+    flex: 1 1 auto;
+}
+
+ul#chat {
+    flex: 1 1 auto;
+    overflow: auto;
+    margin: 0 auto;
+    padding: .5rem;
+    list-style: none;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    background: #292938;
+    border: 1px solid #8c8dff;
+    box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075);
+    scrollbar-width: thin;
+    scrollbar-color: #343a40 #181821;
+}
+
+ul#chat::-webkit-scrollbar {
+    width: 8px;
+}
+ul#chat::-webkit-scrollbar-track {
+    background: #181821; 
+}
+ul#chat::-webkit-scrollbar-thumb {
+    background: #343a40; 
+}
+
+ul#chat li {
+    margin: 0;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #343a40;
+}
+
+ul#chat li small {
+    display: block;
+    font-size: 0.85rem;
+    color: #606085;
+}
+
+ul#chat li.pending {
+    color: #aaa;
+}
+
+.chat-name {
+    font-weight: bold;
+    color: #8c8dff;
+}
+
+#chat-form .char-counter {
+    margin-top: 0.25rem;
+}
+
+@media (max-width: 768px) {
+    #chat-form .input-group {
+        flex-direction: column;
+    }
+
+    #chat-form input[name="name"] {
+        flex: 0 0 auto;
+    }
+}

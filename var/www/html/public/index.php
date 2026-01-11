@@ -18,7 +18,7 @@ if (!is_dir($UPLOAD_DIR)) {
 }
 
 $files = [];
-foreach (scandir($UPLOAD_DIR) as $entry) {
+foreach ((is_dir($UPLOAD_DIR) ? scandir($UPLOAD_DIR) : []) as $entry) {
     if ($entry === '.' || $entry === '..')
         continue;
 
@@ -50,7 +50,7 @@ usort($files, fn($a, $b) => $b['uploaded'] <=> $a['uploaded']);
 </head>
 
 <body>
-    <?php require_once __DIR__ . '/includes/navbar.php'; ?>
+    <?php require_once __DIR__ . '/../includes/navbar.php'; ?>
 
     <?php if (!empty($msg)): ?>
         <p><strong><?= htmlspecialchars($msg) ?></strong></p>
@@ -98,8 +98,6 @@ usort($files, fn($a, $b) => $b['uploaded'] <=> $a['uploaded']);
             </table>
         </div>
     <?php endif; ?>
-
-    <?php require_once __DIR__ . '/includes/footer.php'; ?>
 </body>
 
 </html>
