@@ -64,7 +64,7 @@ if (isset($_POST["content"]) and isset($_POST["name"])) {
         <?php foreach ($chat as $msg): ?>
             <li>
                 <small>
-                    <span class="chat-timestamp" data-timestamp="<?= $msg['time'] ?>"></span>: <span class="chat-name"><?= htmlspecialchars($msg['name']) ?></span>
+                    <span class="chat-name"><?= htmlspecialchars($msg['name']) ?></span> (<span class="chat-timestamp" data-timestamp="<?= $msg['time'] ?>"></span>):
                 </small>
                 <span><?= htmlspecialchars($msg['content']) ?></span>
             </li>

@@ -91,7 +91,7 @@ usort($files, fn($a, $b) => $b['uploaded'] <=> $a['uploaded']);
                         <tr>
                             <td><a href="uploads/<?= rawurlencode($f['name']) ?>" <?= $download ?>><?= htmlspecialchars($f['name']) ?></a></td>
                             <td><?= round($f['size'] / 1024, 1) ?>KB</td>
-                            <td><?= date('Y-m-d H:i', $f['uploaded']) ?></td>
+                            <td><span class="file-timestamp" data-timestamp="<?= $f['uploaded'] ?>"></span></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>

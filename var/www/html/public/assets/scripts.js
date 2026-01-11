@@ -93,6 +93,12 @@ document.addEventListener('DOMContentLoaded', function() {
         el.textContent = Intl.DateTimeFormat(undefined, { dateStyle: "medium", timeStyle: "short" }).format(date);
     });
 
+    // File Time Formatting (index.php)
+    document.querySelectorAll('.file-timestamp[data-timestamp]').forEach(el => {
+        const date = new Date(parseInt(el.dataset.timestamp) * 1000);
+        el.textContent = Intl.DateTimeFormat(undefined, { dateStyle: "medium", timeStyle: "short" }).format(date);
+    });
+
     // Chat Logic (chat.php)
     const chatList = document.getElementById('chat');
     const chatForm = document.getElementById('chat-form');
@@ -132,15 +138,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 const contentSpan = messageElement.querySelector("span");
 
                 small.textContent = "";
-                const timeSpan = document.createElement("span");
-                timeSpan.className = "chat-timestamp";
-                timeSpan.textContent = Intl.DateTimeFormat(undefined, { dateStyle: "medium", timeStyle: "short" }).format(new Date());
-                small.appendChild(timeSpan);
-                small.appendChild(document.createTextNode(": "));
                 const nameSpan = document.createElement("span");
                 nameSpan.className = "chat-name";
                 nameSpan.textContent = name;
                 small.appendChild(nameSpan);
+                small.appendChild(document.createTextNode(" ("));
+                const timeSpan = document.createElement("span");
+                timeSpan.className = "chat-timestamp";
+                timeSpan.textContent = Intl.DateTimeFormat(undefined, { dateStyle: "medium", timeStyle: "short" }).format(new Date());
+                small.appendChild(timeSpan);
+                small.appendChild(document.createTextNode("): "));
                 contentSpan.textContent = content;
                 chatList.append(messageElement);
                 chatList.scrollTop = chatList.scrollHeight;
@@ -180,15 +187,16 @@ document.addEventListener('DOMContentLoaded', function() {
                         const contentSpan = messageElement.querySelector("span");
 
                         small.textContent = "";
-                        const timeSpan = document.createElement("span");
-                        timeSpan.className = "chat-timestamp";
-                        timeSpan.textContent = Intl.DateTimeFormat(undefined, { dateStyle: "medium", timeStyle: "short" }).format(date);
-                        small.appendChild(timeSpan);
-                        small.appendChild(document.createTextNode(": "));
                         const nameSpan = document.createElement("span");
                         nameSpan.className = "chat-name";
                         nameSpan.textContent = msg.name;
                         small.appendChild(nameSpan);
+                        small.appendChild(document.createTextNode(" ("));
+                        const timeSpan = document.createElement("span");
+                        timeSpan.className = "chat-timestamp";
+                        timeSpan.textContent = Intl.DateTimeFormat(undefined, { dateStyle: "medium", timeStyle: "short" }).format(date);
+                        small.appendChild(timeSpan);
+                        small.appendChild(document.createTextNode("): "));
                         contentSpan.textContent = msg.content;
                         chatList.append(messageElement);
                         chatList.dataset.lastMessageId = msg.id;
