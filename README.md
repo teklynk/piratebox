@@ -21,6 +21,7 @@ This configuration has been tested on a Raspberry Pi Zero 2 W running Raspberry 
 - **Captive Portal**: DNS redirection resolves all requests to the local server.
 - **File Sharing**: Simple web interface to upload and download files.
 - **Messages**: Guestbook style messages. Let people know that you were here.
+- **Live Chat**: Have a conversation with others connected to the PirateBox.
 - **Auto-Cleanup**: Script included to purge uploads and messages (optional via scheduled cron job).
 
 ## Prerequisites
@@ -28,14 +29,13 @@ This configuration has been tested on a Raspberry Pi Zero 2 W running Raspberry 
 - OS: Raspbian / Debian.
 - Root/Sudo access.
 
-
 ## Installation
 
 ### 1. Install Dependencies
-__Tip:__ On the Raspberry Pi Zero 2 W, I used a usb hub that also has ethernet. This allowed me to SSH into the Pi while configuring hostapd.
+**Tip:** On the Raspberry Pi Zero 2 W, I used a usb hub that also has ethernet. This allowed me to SSH into the Pi while configuring hostapd.
 - Run: `sudo raspi-config` and set all of the localization settings, WIFI region, TimeZone, Keyboard layout, set hostname and enabled SSH.
 
-__Note:__ The time server is not set by default. This can break `apt update` and produce errors on screen. The issue is that the date/time of the repos do not match the date/time of the Raspberry Pi. They are out of sync. These steps should sync your date/time and you can then run apt update. Ignore all online suggestions about downloading certs. It's just a time sync issue. 
+**Note:** The time server is not set by default. This can break `apt update` and produce errors on screen. The issue is that the date/time of the repos do not match the date/time of the Raspberry Pi. They are out of sync. These steps should sync your date/time and you can then run apt update. Ignore all online suggestions about downloading certs. It's just a time sync issue. 
 
 ```bash
 sudo nano /etc/systemd/timesyncd.conf
@@ -173,11 +173,8 @@ Every day at midnight
 
 ```bash
 sudo systemctl disable bluetooth.service
-
 sudo systemctl stop wpa_supplicant.service
-
 sudo systemctl disable wpa_supplicant.service
-
 sudo systemctl mask wpa_supplicant.service
 ```
 
@@ -185,9 +182,7 @@ You may also want to disable SSH. This will however mean that you will no longer
 
 ```bash
 sudo systemctl disable --now ssh
-
 sudo systemctl mask ssh
-
 sudo systemctl status ssh
 ```
 
