@@ -340,14 +340,14 @@ body.chat-page {
 ul#chat {
     flex: 1 1 auto;
     overflow: auto;
-    margin: -20px 0 0 0;
+    margin: -15px 0 0 0;
     padding: .5rem;
     list-style: none;
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
     background: #292938;
-    border: 1px solid #8c8dff;
+    border: none;
     box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075);
     scrollbar-width: thin;
     scrollbar-color: #343a40 #181821;
