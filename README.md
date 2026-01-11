@@ -13,6 +13,8 @@ This configuration has been tested on a Raspberry Pi Zero 2 W running Raspberry 
 <br>
 <a target="_blank" rel="noopener noreferrer" href="https://github.com/teklynk/piratebox/blob/main/Screenshot%20from%202026-01-08 17-09-05.png?raw=true"><img src="https://github.com/teklynk/piratebox/blob/main/Screenshot%20from%202026-01-08 17-09-05.png?raw=true" style="max-width: 100%;"></a>
 <br>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/teklynk/piratebox/blob/main/Screenshot%20from%202026-01-10 21-27-04.png?raw=true"><img src="https://github.com/teklynk/piratebox/blob/main/Screenshot%20from%202026-01-10 21-27-04.png?raw=true" style="max-width: 100%;"></a>
+<br>
 <a target="_blank" rel="noopener noreferrer" href="https://github.com/teklynk/piratebox/blob/main/pizero_piratebox.jpg?raw=true"><img src="https://github.com/teklynk/piratebox/raw/main/pizero_piratebox.jpg?raw=true" style="max-width: 100%;"></a>
 </div>
 
