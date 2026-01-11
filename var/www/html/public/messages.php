@@ -67,18 +67,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <?php require_once __DIR__ . '/../includes/navbar.php'; ?>
 
-    <form action="messages.php" method="post">
+    <form id="message-form" action="messages.php" method="post">
         <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token']) ?>">
         <label>Name:
             <input type="text" name="name" placeholder="Anonymous" maxlength="32">
         </label>
         <label>Message:
-            <textarea name="message" required rows="4" placeholder="Write a message..." maxlength="255"></textarea>
+            <textarea name="message" required rows="3" placeholder="Write a message..." maxlength="255"></textarea>
         </label>
+        <button type="submit">Post Message</button>
         <div class="char-counter">
             <span id="char-count">0 / 255</span>
         </div>
-        <button type="submit">Post Message</button>
     </form>
 
     <div class="message-container">
@@ -88,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <?php foreach ($messages as $msg): ?>
                 <div class="message-card">
                     <div class="message-header">
-                        <span class="message-author"><?= htmlspecialchars($msg['name']) ?></span>
+                        <span class="message-name"><?= htmlspecialchars($msg['name']) ?></span>
                         <span class="message-time" data-timestamp="<?= $msg['timestamp'] ?>"></span>
                     </div>
                     <div class="message-body"><?= nl2br(htmlspecialchars($msg['message'])) ?></div>

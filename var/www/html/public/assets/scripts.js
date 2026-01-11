@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (chatList && chatForm) {
         // Chat Character Counter
-        const chatInput = chatForm.querySelector('input[name="content"]');
+        const chatInput = chatForm.querySelector('input[name="message"]');
         const chatCharCount = document.getElementById('char-count');
         
         if (chatInput && chatCharCount) {
@@ -118,7 +118,7 @@ document.addEventListener('DOMContentLoaded', function() {
         chatForm.addEventListener('submit', async event => {
             const form = event.target;
             let name = form.name.value;
-            const content = form.content.value;
+            const message = form.message.value;
             const csrf_token = form.csrf_token.value;
 
             event.preventDefault();
@@ -126,10 +126,10 @@ document.addEventListener('DOMContentLoaded', function() {
             if (name == "")
                 name = "Anonymous";
 
-            if (content == "")
+            if (message == "")
                   return;
 
-            await fetch(form.action, { method: "POST", body: new URLSearchParams({ name, content, csrf_token }) });
+            await fetch(form.action, { method: "POST", body: new URLSearchParams({ name, message, csrf_token }) });
             
             const template = chatList.querySelector("template");
             if (template) {
@@ -148,13 +148,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 timeSpan.textContent = Intl.DateTimeFormat(undefined, { dateStyle: "medium", timeStyle: "short" }).format(new Date());
                 small.appendChild(timeSpan);
                 small.appendChild(document.createTextNode("): "));
-                contentSpan.textContent = content;
+                contentSpan.textContent = message;
                 chatList.append(messageElement);
                 chatList.scrollTop = chatList.scrollHeight;
             }
 
-            form.content.value = "";
-            form.content.focus();
+            form.message.value = "";
+            form.message.focus();
             
             if (chatCharCount && chatInput) {
                 chatCharCount.textContent = `0 / ${chatInput.getAttribute('maxlength')}`;
@@ -180,7 +180,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 for (const msg of chat) {
                     if (msg.id > lastMessageId) {
-                        const date = new Date(msg.time * 1000);
+                        const date = new Date(msg.timestamp * 1000);
                         const messageElement = messageTemplate.cloneNode(true);
                         messageElement.classList.remove("pending");
                         const small = messageElement.querySelector("small");
@@ -197,7 +197,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         timeSpan.textContent = Intl.DateTimeFormat(undefined, { dateStyle: "medium", timeStyle: "short" }).format(date);
                         small.appendChild(timeSpan);
                         small.appendChild(document.createTextNode("): "));
-                        contentSpan.textContent = msg.content;
+                        contentSpan.textContent = msg.message;
                         chatList.append(messageElement);
                         chatList.dataset.lastMessageId = msg.id;
                     }

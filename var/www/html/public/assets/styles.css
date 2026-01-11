@@ -204,7 +204,7 @@ button.upload-animation:disabled {
     padding-bottom: 0.5rem;
 }
 
-.message-author {
+.message-name {
     font-weight: bold;
     color: #8c8dff;
 }
@@ -333,7 +333,7 @@ body.chat-page {
     flex: 0 1 10em;
 }
 
-#chat-form input[name="content"] {
+#chat-form input[name="message"] {
     flex: 1 1 auto;
 }
 

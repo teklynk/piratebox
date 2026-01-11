@@ -9,7 +9,7 @@ $DATA_FILE = __DIR__ . '/../data/chat.json';
 $chat = [];
 $chat_size = 50;
 
-// Read file (Similar to messages.php)
+// Read file
 if (file_exists($DATA_FILE)) {
     $json = file_get_contents($DATA_FILE);
     if ($json !== false) {
@@ -23,26 +23,26 @@ if (isset($_GET['fetch'])) {
     exit;
 }
 
-if (isset($_POST["content"]) and isset($_POST["name"])) {
+if (isset($_POST["message"]) && isset($_POST["name"])) {
     if (empty($_POST['csrf_token']) || !hash_equals($_SESSION['csrf_token'] ?? '', $_POST['csrf_token'])) {
         http_response_code(403);
         exit('Invalid CSRF token.');
     }
 
     $name = trim(strip_tags($_POST["name"]));
-    $content = trim(strip_tags($_POST["content"]));
+    $message = trim(strip_tags($_POST["message"]));
 
     if ($name === '') {
         $name = 'Anonymous';
     }
 
-    if ($content !== '') {
+    if ($message !== '') {
         $next_id = (count($chat) > 0) ? $chat[count($chat) - 1]["id"] + 1 : 0;
         $chat[] = [
             "id" => $next_id,
-            "time" => time(),
             "name" => $name,
-            "content" => $content
+            "message" => $message,
+            "timestamp" => time()
         ];
 
         if (count($chat) > $chat_size) {
@@ -73,9 +73,9 @@ if (isset($_POST["content"]) and isset($_POST["name"])) {
         <?php foreach ($chat as $msg): ?>
             <li>
                 <small>
-                    <span class="chat-name"><?= htmlspecialchars($msg['name']) ?></span> (<span class="chat-timestamp" data-timestamp="<?= $msg['time'] ?>"></span>):
+                    <span class="chat-name"><?= htmlspecialchars($msg['name']) ?></span> (<span class="chat-timestamp" data-timestamp="<?= $msg['timestamp'] ?>"></span>):
                 </small>
-                <span><?= htmlspecialchars($msg['content']) ?></span>
+                <span><?= htmlspecialchars($msg['message']) ?></span>
             </li>
         <?php endforeach; ?>
         <template>
@@ -86,13 +86,12 @@ if (isset($_POST["content"]) and isset($_POST["name"])) {
         </template>
     </ul>
 
-    <form id="chat-form" method=post
-        action="<?= htmlentities($_SERVER["PHP_SELF"], ENT_QUOTES | ENT_SUBSTITUTE | ENT_HTML5, "UTF-8") ?>">
+    <form id="chat-form" method="post" action="chat.php">
         <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token']) ?>">
         <div class="input-group">
-            <input type=text name=name placeholder="Anonymous" maxlength="32">
-            <input type=text name=content placeholder="Message" maxlength="255" autofocus>
-            <button>Send</button>
+            <input type="text" name="name" placeholder="Anonymous" maxlength="32">
+            <input type="text" name="message" placeholder="Message" maxlength="255" autofocus>
+            <button type="submit">Send</button>
         </div>
         <div class="char-counter">
             <span id="char-count">0 / 255</span>
