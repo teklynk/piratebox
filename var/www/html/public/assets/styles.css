@@ -340,7 +340,7 @@ body.chat-page {
 ul#chat {
     flex: 1 1 auto;
     overflow: auto;
-    margin: 0 auto;
+    margin: -20px 0 0 0;
     padding: .5rem;
     list-style: none;
     width: 100%;
