@@ -7,15 +7,13 @@ Inspired by the discontinued [PirateBox](https://en.wikipedia.org/wiki/PirateBox
 This configuration has been tested on a Raspberry Pi Zero 2 W running Raspberry Pi OS Lite (Trixie).
 
 <div dir="auto">
-<a target="_blank" rel="noopener noreferrer" href="https://github.com/teklynk/piratebox/blob/main/Screenshot%20from%202026-01-08 17-08-04.png?raw=true"><img src="https://github.com/teklynk/piratebox/blob/main/Screenshot%20from%202026-01-08 17-08-04.png?raw=true" style="max-width: 100%;"></a>
-<br>
-<a target="_blank" rel="noopener noreferrer" href="https://github.com/teklynk/piratebox/blob/main/Screenshot%20from%202026-01-08 17-08-26.png?raw=true"><img src="https://github.com/teklynk/piratebox/blob/main/Screenshot%20from%202026-01-08 17-08-26.png?raw=true" style="max-width: 100%;"></a>
-<br>
-<a target="_blank" rel="noopener noreferrer" href="https://github.com/teklynk/piratebox/blob/main/Screenshot%20from%202026-01-08 17-09-05.png?raw=true"><img src="https://github.com/teklynk/piratebox/blob/main/Screenshot%20from%202026-01-08 17-09-05.png?raw=true" style="max-width: 100%;"></a>
-<br>
-<a target="_blank" rel="noopener noreferrer" href="https://github.com/teklynk/piratebox/blob/main/Screenshot%20from%202026-01-10 21-27-04.png?raw=true"><img src="https://github.com/teklynk/piratebox/blob/main/Screenshot%20from%202026-01-10 21-27-04.png?raw=true" style="max-width: 100%;"></a>
-<br>
 <a target="_blank" rel="noopener noreferrer" href="https://github.com/teklynk/piratebox/blob/main/pizero_piratebox.jpg?raw=true"><img src="https://github.com/teklynk/piratebox/raw/main/pizero_piratebox.jpg?raw=true" style="max-width: 100%;"></a>
+<br>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/teklynk/piratebox/blob/main/Screenshot%20from%202026-01-11%2001-00-39.png?raw=true"><img src="https://github.com/teklynk/piratebox/blob/main/Screenshot%20from%202026-01-11%2001-00-39.png?raw=true" style="max-width: 100%;"></a>
+<br>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/teklynk/piratebox/blob/main/Screenshot%20from%202026-01-1 01-02-06.png?raw=true"><img src="https://github.com/teklynk/piratebox/blob/main/Screenshot%20from%202026-01-11%2001-02-06.png?raw=true" style="max-width: 100%;"></a>
+<br>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/teklynk/piratebox/blob/main/Screenshot%20from%202026-01-11%2001-03-28.png?raw=true"><img src="https://github.com/teklynk/piratebox/blob/main/Screenshot%20from%202026-01-11%2001-03-28.png?raw=true" style="max-width: 100%;"></a>
 </div>
 
 ## Features
@@ -151,10 +149,11 @@ Copy the source files (`index.php`, `upload.php`, `styles.css`, images) to `/var
 
 Create the uploads directory and set permissions:
 ```bash
-cd /var/www/html/public
-sudo mkdir uploads
+sudo mkdir -p /var/www/html/public/uploads
+sudo mkdir -p /var/www/html/data
 sudo chown -R www-data:www-data /var/www/html
 sudo chmod 0755 /var/www/html/public/uploads
+sudo chmod 0755 /var/www/html/data
 ```
 
 ### 5. Maintenance (Auto-Purge - optional)
