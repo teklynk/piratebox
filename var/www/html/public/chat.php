@@ -29,19 +29,28 @@ if (isset($_POST["content"]) and isset($_POST["name"])) {
         exit('Invalid CSRF token.');
     }
 
-    $next_id = (count($chat) > 0) ? $chat[count($chat) - 1]["id"] + 1 : 0;
-    $chat[] = [
-        "id" => $next_id,
-        "time" => time(),
-        "name" => $_POST["name"],
-        "content" => $_POST["content"]
-    ];
+    $name = trim(strip_tags($_POST["name"]));
+    $content = trim(strip_tags($_POST["content"]));
 
-    if (count($chat) > $chat_size) {
-        $chat = array_slice($chat, count($chat) - $chat_size);
+    if ($name === '') {
+        $name = 'Anonymous';
     }
 
-    file_put_contents($DATA_FILE, json_encode($chat, JSON_PRETTY_PRINT));
+    if ($content !== '') {
+        $next_id = (count($chat) > 0) ? $chat[count($chat) - 1]["id"] + 1 : 0;
+        $chat[] = [
+            "id" => $next_id,
+            "time" => time(),
+            "name" => $name,
+            "content" => $content
+        ];
+
+        if (count($chat) > $chat_size) {
+            $chat = array_slice($chat, count($chat) - $chat_size);
+        }
+
+        file_put_contents($DATA_FILE, json_encode($chat, JSON_PRETTY_PRINT));
+    }
 
     exit();
 }

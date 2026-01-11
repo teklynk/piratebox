@@ -24,8 +24,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         die('Invalid CSRF token.');
     }
 
-    $name = trim($_POST['name'] ?? '');
-    $content = trim($_POST['message'] ?? '');
+    $name = trim(strip_tags($_POST['name'] ?? ''));
+    $content = trim(strip_tags($_POST['message'] ?? ''));
 
     if ($name === '') {
         $name = 'Anonymous';
