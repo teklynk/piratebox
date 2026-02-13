@@ -215,4 +215,65 @@ document.addEventListener('DOMContentLoaded', function() {
         poll_for_new_chat();
         setInterval(poll_for_new_chat, 1000);
     }
+
+    // Navbar Badges Logic
+    const badgeMessages = document.getElementById('badge-messages');
+    const badgeChat = document.getElementById('badge-chat');
+
+    const getMaxId = (items) => {
+        if (!items || items.length === 0) return -1;
+        return items.reduce((max, item) => Math.max(max, item.id), -1);
+    };
+
+    const updateBadges = async () => {
+        const isMessagesPage = window.location.pathname.includes('messages.php');
+        const isChatPage = window.location.pathname.includes('chat.php');
+
+        // Check Messages
+        try {
+            const res = await fetch('messages.php?fetch=1');
+            if (res.ok) {
+                const messages = await res.json();
+                const lastSeenId = parseInt(localStorage.getItem('piratebox_last_message_id') || '-1');
+                const maxId = getMaxId(messages);
+
+                if (isMessagesPage) {
+                    localStorage.setItem('piratebox_last_message_id', maxId);
+                    if (badgeMessages) badgeMessages.style.display = 'none';
+                } else {
+                    const unread = messages.filter(m => m.id > lastSeenId).length;
+                    if (badgeMessages) {
+                        badgeMessages.textContent = unread > 0 ? unread : '';
+                        badgeMessages.style.display = unread > 0 ? 'inline-block' : 'none';
+                    }
+                }
+            }
+        } catch (e) { console.error(e); }
+
+        // Check Chat
+        try {
+            const res = await fetch('chat.php?fetch=1');
+            if (res.ok) {
+                const chats = await res.json();
+                const lastSeenId = parseInt(localStorage.getItem('piratebox_last_chat_id') || '-1');
+                const maxId = getMaxId(chats);
+
+                if (isChatPage) {
+                    localStorage.setItem('piratebox_last_chat_id', maxId);
+                    if (badgeChat) badgeChat.style.display = 'none';
+                } else {
+                    const unread = chats.filter(c => c.id > lastSeenId).length;
+                    if (badgeChat) {
+                        badgeChat.textContent = unread > 0 ? unread : '';
+                        badgeChat.style.display = unread > 0 ? 'inline-block' : 'none';
+                    }
+                }
+            }
+        } catch (e) { console.error(e); }
+    };
+
+    if (badgeMessages || badgeChat) {
+        updateBadges();
+        setInterval(updateBadges, 3000);
+    }
 });

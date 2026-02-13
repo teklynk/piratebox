@@ -19,6 +19,12 @@ if (file_exists($DATA_FILE)) {
     }
 }
 
+if (isset($_GET['fetch'])) {
+    header('Content-Type: application/json');
+    echo json_encode($messages);
+    exit;
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($_POST['csrf_token']) || !hash_equals($_SESSION['csrf_token'] ?? '', $_POST['csrf_token'])) {
         die('Invalid CSRF token.');
