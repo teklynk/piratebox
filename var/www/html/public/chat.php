@@ -90,11 +90,11 @@ if (isset($_POST["message"]) && isset($_POST["name"])) {
         <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token']) ?>">
         <div class="input-group">
             <input type="text" name="name" placeholder="Anonymous" maxlength="32">
-            <input type="text" name="message" placeholder="Message" maxlength="255" autofocus>
+            <input type="text" name="message" placeholder="Message" maxlength="2000" autofocus>
             <button type="submit">Send</button>
         </div>
         <div class="char-counter">
-            <span id="char-count">0 / 255</span>
+            <span id="char-count">0 / 2000</span>
         </div>
     </form>
 

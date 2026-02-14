@@ -79,11 +79,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input type="text" name="name" placeholder="Anonymous" maxlength="32">
         </label>
         <label>Message:
-            <textarea name="message" required rows="3" placeholder="Write a message..." maxlength="255"></textarea>
+            <textarea name="message" required rows="3" placeholder="Write a message..." maxlength="2000"></textarea>
         </label>
         <button type="submit">Post Message</button>
         <div class="char-counter">
-            <span id="char-count">0 / 255</span>
+            <span id="char-count">0 / 2000</span>
         </div>
     </form>
 
@@ -97,7 +97,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <span class="message-name"><?= htmlspecialchars($msg['name']) ?></span>
                         <span class="message-time" data-timestamp="<?= $msg['timestamp'] ?>"></span>
                     </div>
-                    <div class="message-body"><?= nl2br(htmlspecialchars($msg['message'])) ?></div>
+                    <div class="message-body"><?= htmlspecialchars($msg['message']) ?></div>
                 </div>
             <?php endforeach; ?>
         <?php endif; ?>
