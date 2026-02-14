@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 session_start();
 
 if (empty($_SESSION['csrf_token'])) {
@@ -7,13 +8,16 @@ if (empty($_SESSION['csrf_token'])) {
 
 $DATA_FILE = __DIR__ . '/../data/chat.json';
 $chat = [];
-$chat_size = 50;
+$chat_size = 100;
 
 // Read file
 if (file_exists($DATA_FILE)) {
     $json = file_get_contents($DATA_FILE);
     if ($json !== false) {
-        $chat = json_decode($json, true) ?? [];
+        $decoded = json_decode($json, true);
+        if (is_array($decoded)) {
+            $chat = $decoded;
+        }
     }
 }
 
@@ -23,14 +27,14 @@ if (isset($_GET['fetch'])) {
     exit;
 }
 
-if (isset($_POST["message"]) && isset($_POST["name"])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["message"]) && isset($_POST["name"])) {
     if (empty($_POST['csrf_token']) || !hash_equals($_SESSION['csrf_token'] ?? '', $_POST['csrf_token'])) {
         http_response_code(403);
         exit('Invalid CSRF token.');
     }
 
-    $name = trim(strip_tags($_POST["name"]));
-    $message = trim(strip_tags($_POST["message"]));
+    $name = trim(strip_tags($_POST['name'] ?? ''));
+    $message = trim(strip_tags($_POST['message'] ?? ''));
 
     if ($name === '') {
         $name = 'Anonymous';
@@ -38,21 +42,23 @@ if (isset($_POST["message"]) && isset($_POST["name"])) {
 
     if ($message !== '') {
         $next_id = (count($chat) > 0) ? $chat[count($chat) - 1]["id"] + 1 : 0;
-        $chat[] = [
+
+        $newChat = [
             "id" => $next_id,
             "name" => $name,
             "message" => $message,
             "timestamp" => time()
         ];
 
+        // Add to the end of the array (Newest last)
+        $chat[] = $newChat;
+
         if (count($chat) > $chat_size) {
-            $chat = array_slice($chat, count($chat) - $chat_size);
+            $chat = array_slice($chat, -$chat_size);
         }
 
         file_put_contents($DATA_FILE, json_encode($chat, JSON_PRETTY_PRINT));
     }
-
-    exit();
 }
 
 ?>

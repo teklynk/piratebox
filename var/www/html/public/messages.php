@@ -8,7 +8,9 @@ if (empty($_SESSION['csrf_token'])) {
 
 $DATA_FILE = __DIR__ . '/../data/messages.json';
 $messages = [];
+$message_size = 100;
 
+// Read file
 if (file_exists($DATA_FILE)) {
     $json = file_get_contents($DATA_FILE);
     if ($json !== false) {
@@ -25,7 +27,7 @@ if (isset($_GET['fetch'])) {
     exit;
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["message"]) && isset($_POST["name"])) {
     if (empty($_POST['csrf_token']) || !hash_equals($_SESSION['csrf_token'] ?? '', $_POST['csrf_token'])) {
         die('Invalid CSRF token.');
     }
@@ -49,6 +51,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Add to the beginning of the array (Newest first)
         array_unshift($messages, $newMessage);
+
+        if (count($messages) > $message_size) {
+            $messages = array_slice($messages, 0, $message_size);
+        }
 
         // Save to file
         file_put_contents($DATA_FILE, json_encode($messages, JSON_PRETTY_PRINT));
