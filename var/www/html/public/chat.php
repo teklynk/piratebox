@@ -21,6 +21,7 @@ if (file_exists($DATA_FILE)) {
     }
 }
 
+// Used by javascript to fetch json data using ?fetch=1
 if (isset($_GET['fetch'])) {
     header('Content-Type: application/json');
     echo json_encode($chat);

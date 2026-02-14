@@ -21,6 +21,7 @@ if (file_exists($DATA_FILE)) {
     }
 }
 
+// Used by javascript to fetch json data using ?fetch=1
 if (isset($_GET['fetch'])) {
     header('Content-Type: application/json');
     echo json_encode($messages);
@@ -29,7 +30,8 @@ if (isset($_GET['fetch'])) {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["message"]) && isset($_POST["name"])) {
     if (empty($_POST['csrf_token']) || !hash_equals($_SESSION['csrf_token'] ?? '', $_POST['csrf_token'])) {
-        die('Invalid CSRF token.');
+        http_response_code(403);
+        exit('Invalid CSRF token.');
     }
 
     $name = trim(strip_tags($_POST['name'] ?? ''));
