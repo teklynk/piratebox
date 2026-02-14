@@ -17,6 +17,7 @@ h2 {
     text-align: center;
     text-transform: uppercase;
 }
+
 .muted {
     color: #606085 !important;
 }
@@ -162,8 +163,13 @@ body.centered-page .logo {
 }
 
 @keyframes upload-stripes {
-    from { background-position: 40px 0; }
-    to { background-position: 0 0; }
+    from {
+        background-position: 40px 0;
+    }
+
+    to {
+        background-position: 0 0;
+    }
 }
 
 button.upload-animation:disabled {
@@ -249,6 +255,7 @@ button.upload-animation:disabled {
     margin-bottom: 20px;
     box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075);
 }
+
 .navbar-brand {
     display: flex;
     align-items: center;
@@ -257,10 +264,12 @@ button.upload-animation:disabled {
     font-size: 1.25rem;
     font-weight: bold;
 }
+
 .navbar-brand img {
     height: 40px;
     margin-right: 10px;
 }
+
 .navbar-toggler {
     background: none;
     border: 1px solid #8c8dff;
@@ -271,25 +280,36 @@ button.upload-animation:disabled {
     border-radius: 0.25rem;
     display: none;
 }
+
 .navbar-menu {
     display: flex;
     list-style: none;
     margin: 0;
     padding: 0;
 }
+
 .navbar-menu li {
     margin-left: 1rem;
 }
+
 .navbar-menu a {
     color: #ddd9e8;
     text-decoration: none;
 }
+
 .navbar-menu a:hover {
     color: #8c8dff;
 }
+
 @media (max-width: 768px) {
-    .navbar { flex-wrap: wrap; }
-    .navbar-toggler { display: block; }
+    .navbar {
+        flex-wrap: wrap;
+    }
+
+    .navbar-toggler {
+        display: block;
+    }
+
     .navbar-menu {
         display: none;
         width: 100%;
@@ -297,8 +317,14 @@ button.upload-animation:disabled {
         text-align: center;
         margin-top: 10px;
     }
-    .navbar-menu.active { display: flex; }
-    .navbar-menu li { margin: 10px 0; }
+
+    .navbar-menu.active {
+        display: flex;
+    }
+
+    .navbar-menu li {
+        margin: 10px 0;
+    }
 }
 
 /* Chat Page Styles */
@@ -368,11 +394,13 @@ ul#chat {
 ul#chat::-webkit-scrollbar {
     width: 8px;
 }
+
 ul#chat::-webkit-scrollbar-track {
-    background: #181821; 
+    background: #181821;
 }
+
 ul#chat::-webkit-scrollbar-thumb {
-    background: #343a40; 
+    background: #343a40;
 }
 
 ul#chat li {

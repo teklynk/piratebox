@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Username Persistence
     const nameInputs = document.querySelectorAll('input[name="name"]');
     const savedName = localStorage.getItem('piratebox_username');
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // We select by enctype to specifically target the file upload form
     const uploadForm = document.querySelector('form[enctype="multipart/form-data"]');
     if (uploadForm) {
-        uploadForm.addEventListener('submit', function(e) {
+        uploadForm.addEventListener('submit', function (e) {
             const btn = uploadForm.querySelector('button');
             const fileLabel = uploadForm.querySelector('label');
             const fileInput = uploadForm.querySelector('input[name="file"]');
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (fileInput && fileInput.files.length > 0) {
                 // Get max size from data attribute
                 const maxSize = parseInt(fileInput.getAttribute('data-max-size'), 10);
-                
+
                 if (!isNaN(maxSize) && fileInput.files[0].size > maxSize) {
                     e.preventDefault();
                     alert('File is too large. Maximum size is ' + (maxSize / 1024 / 1024) + 'MiB.');
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // File Search Logic (index.php)
     const searchInput = document.getElementById('fileSearch');
     if (searchInput) {
-        searchInput.addEventListener('keyup', function() {
+        searchInput.addEventListener('keyup', function () {
             const filter = searchInput.value.toLowerCase();
             const rows = document.querySelectorAll('table tbody tr');
 
@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (messageInput && charCountDisplay) {
         const maxLength = messageInput.getAttribute('maxlength');
-        messageInput.addEventListener('input', function() {
+        messageInput.addEventListener('input', function () {
             charCountDisplay.textContent = `${messageInput.value.length} / ${maxLength}`;
         });
     }
@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Chat Character Counter
         const chatInput = chatForm.querySelector('input[name="message"]');
         const chatCharCount = document.getElementById('char-count');
-        
+
         if (chatInput && chatCharCount) {
             const maxLength = chatInput.getAttribute('maxlength');
             chatInput.addEventListener('input', () => {
@@ -127,10 +127,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 name = "Anonymous";
 
             if (message == "")
-                  return;
+                return;
 
             await fetch(form.action, { method: "POST", body: new URLSearchParams({ name, message, csrf_token }) });
-            
+
             const template = chatList.querySelector("template");
             if (template) {
                 const messageElement = template.content.cloneNode(true);
@@ -155,7 +155,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             form.message.value = "";
             form.message.focus();
-            
+
             if (chatCharCount && chatInput) {
                 chatCharCount.textContent = `0 / ${chatInput.getAttribute('maxlength')}`;
             }
