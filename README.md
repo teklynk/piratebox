@@ -16,6 +16,11 @@ This configuration has been tested on a Raspberry Pi Zero 2 W running Raspberry 
 <a target="_blank" rel="noopener noreferrer" href="https://github.com/teklynk/piratebox/blob/main/Screenshot%20from%202026-01-11%2001-03-28.png?raw=true"><img src="https://github.com/teklynk/piratebox/blob/main/Screenshot%20from%202026-01-11%2001-03-28.png?raw=true" style="max-width: 100%;"></a>
 </div>
 
+## WiFi QR Code
+**SSID: PirateBox**
+
+!['PirateBox WiFi QR Code'](https://github.com/teklynk/piratebox/blob/main/PirateBox-wifi-qrcode.png?raw=true)
+
 ## Features
 - **Offline Network**: Creates its own Wi-Fi hotspot (SSID: PirateBox).
 - **Captive Portal**: DNS redirection resolves all requests to the local server.
