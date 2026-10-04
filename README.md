@@ -171,8 +171,9 @@ Chat history is encrypted with AES-256-GCM before it is written to
 `www-data` group. Back up this key securely: encrypted chat history cannot be
 recovered without it. The installer creates the key only when it does not
 already exist. Before upgrading an installation that has a plaintext chat log,
-remove it once with `sudo rm /var/www/html/data/chat.json`; chat will start
-empty and new messages will be stored encrypted.
+remove existing plaintext logs once with
+`sudo rm /var/www/html/data/chat.json /var/www/html/data/messages.json`. Chat
+and messages will start empty, and new entries will be stored encrypted.
 
 ### 5. Maintenance (Auto-Purge - optional)
 A script `purge_uploads.sh` is provided to clean up uploads and messages.
