@@ -159,7 +159,20 @@ sudo mkdir -p /var/www/html/data
 sudo chown -R www-data:www-data /var/www/html
 sudo chmod 0755 /var/www/html/public/uploads
 sudo chmod 0755 /var/www/html/data
+sudo install -d -o root -g www-data -m 0750 /etc/piratebox
+sudo sh -c 'test -s /etc/piratebox/chat.key || openssl rand -hex 32 > /etc/piratebox/chat.key'
+sudo chown root:www-data /etc/piratebox/chat.key
+sudo chmod 0640 /etc/piratebox/chat.key
 ```
+
+Chat history is encrypted with AES-256-GCM before it is written to
+`/var/www/html/data/chat.json`. The decryption key is stored separately at
+`/etc/piratebox/chat.key`, outside the web root, and is readable by PHP-FPM's
+`www-data` group. Back up this key securely: encrypted chat history cannot be
+recovered without it. The installer creates the key only when it does not
+already exist. Before upgrading an installation that has a plaintext chat log,
+remove it once with `sudo rm /var/www/html/data/chat.json`; chat will start
+empty and new messages will be stored encrypted.
 
 ### 5. Maintenance (Auto-Purge - optional)
 A script `purge_uploads.sh` is provided to clean up uploads and messages.

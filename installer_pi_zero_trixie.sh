@@ -126,6 +126,13 @@ chown -R www-data:www-data /var/www/html
 chmod 0755 /var/www/html/public/uploads
 chmod 0755 /var/www/html/data
 
+install -d -o root -g www-data -m 0750 /etc/piratebox
+if [ ! -s /etc/piratebox/chat.key ]; then
+    openssl rand -hex 32 > /etc/piratebox/chat.key
+fi
+chown root:www-data /etc/piratebox/chat.key
+chmod 0640 /etc/piratebox/chat.key
+
 # Maintenance Scripts & Cron
 echo "[+] Installing Maintenance Scripts..."
 cp purge_uploads.sh /usr/local/bin/
